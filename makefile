@@ -1,4 +1,4 @@
-output: main.o other.o Food.o Snake.o Game.o
+output: main.o other.o Food.o Snake.o Game.o 
 	g++ bin/main.o bin/other.o bin/Food.o bin/Snake.o bin/Game.o -lraylib -lGL -lm -lpthread -ldl -lrt -lX11 -o bin/output
 	# g++ main.o -o main
 	# make clean

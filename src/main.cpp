@@ -4,6 +4,15 @@
 #include "../include/constants.h"
 #include "../utils/interval.h"
 #include "../include/Game.h"
+#include <raymath.h>
+
+bool element_in_deque(Vector2 element, std::deque<Vector2> deque)
+{
+  for (auto el : deque) {
+    if (Vector2Equals(el, element)) return true;
+  }
+  return false;
+}
 
 int main()
 {
@@ -12,19 +21,31 @@ int main()
 
   Game game;
 
-  while (!WindowShouldClose()) 
+  while (!WindowShouldClose())
   {
     BeginDrawing();
     ClearBackground(constants::BACKGROUND_COLOR);
 
     switch (GetKeyPressed()) {
-    case KEY_W: game.snake.velocity = (game.snake.velocity.y != 1) ? Vector2{ 0, -1 } : Vector2{ 0, 1 }; break;
+    case KEY_W:
+      game.snake.velocity = (game.snake.velocity.y != 1) ? Vector2{ 0, -1 } : Vector2{ 0, 1 };
+      game.running = true;
+      break;
 
-    case KEY_S: game.snake.velocity = (game.snake.velocity.y != -1) ? Vector2{ 0, 1 } : Vector2{ 0, -1 }; break;
+    case KEY_S:
+      game.snake.velocity = (game.snake.velocity.y != -1) ? Vector2{ 0, 1 } : Vector2{ 0, -1 };
+      game.running = true;
+      break;
 
-    case KEY_A: game.snake.velocity = (game.snake.velocity.x != 1) ? Vector2{ -1, 0 } : Vector2{ 1,0 }; break;
+    case KEY_A:
+      game.snake.velocity = (game.snake.velocity.x != 1) ? Vector2{ -1, 0 } : Vector2{ 1,0 };
+      game.running = true;
+      break;
 
-    case KEY_D: game.snake.velocity = (game.snake.velocity.x != -1) ? Vector2{ 1, 0 } : Vector2{ -1, 0 }; break;
+    case KEY_D:
+      game.snake.velocity = (game.snake.velocity.x != -1) ? Vector2{ 1, 0 } : Vector2{ -1, 0 };
+      game.running = true;
+      break;
 
     default:
       break;

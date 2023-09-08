@@ -1,4 +1,5 @@
 #include <raylib.h>
+#pragma once
 
 double lastUpdateTime = 0;
 
