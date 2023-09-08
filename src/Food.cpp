@@ -12,22 +12,22 @@ bool element_in_dequeee(Vector2 element, std::deque<Vector2> deque)
   return false;
 }
 
-Food::Food(std::deque<Vector2> snakeBody) 
+Food::Food(std::deque<Vector2> snakeBody)
 {
   position = random_pos(snakeBody);
 }
 
-void Food::draw() const 
+void Food::draw() const
 {
-  DrawRectangle(position.x * constants::CELL_SIZE, position.y * constants::CELL_SIZE, constants::CELL_SIZE, constants::CELL_SIZE, constants::SNAKE_COLOR);
+  DrawRectangle(constants::OFFSET + position.x * constants::CELL_SIZE, constants::OFFSET + position.y * constants::CELL_SIZE, constants::CELL_SIZE, constants::CELL_SIZE, constants::SNAKE_COLOR);
 }
 
-Vector2 Food::random_pos(std::deque<Vector2> snakeBody) 
+Vector2 Food::random_pos(std::deque<Vector2> snakeBody)
 {
   float random_x;
   float random_y;
 
-  do 
+  do
   {
     random_x = (float)GetRandomValue(0, constants::CELL_AMOUNT - 1);
     random_y = (float)GetRandomValue(0, constants::CELL_AMOUNT - 1);

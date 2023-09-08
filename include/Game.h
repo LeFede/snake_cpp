@@ -7,6 +7,7 @@ class Game
 public:
   double interval = .2;
   bool running = true;
+  int score = 0;
   Snake snake;
   Food food = Food(snake.body);
   Game();

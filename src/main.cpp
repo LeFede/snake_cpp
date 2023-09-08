@@ -16,7 +16,7 @@ bool element_in_deque(Vector2 element, std::deque<Vector2> deque)
 
 int main()
 {
-  InitWindow(constants::CELL_SIZE * constants::CELL_AMOUNT, constants::CELL_SIZE * constants::CELL_AMOUNT, "Hello");
+  InitWindow(constants::OFFSET * 2 + constants::CELL_SIZE * constants::CELL_AMOUNT, constants::OFFSET * 2 + constants::CELL_SIZE * constants::CELL_AMOUNT, "Snake Game 🦊");
   SetTargetFPS(constants::FPS);
 
   Game game;
@@ -24,7 +24,8 @@ int main()
   while (!WindowShouldClose())
   {
     BeginDrawing();
-    ClearBackground(constants::BACKGROUND_COLOR);
+
+    interval(game.interval) ? game.update() : void();
 
     switch (GetKeyPressed()) {
     case KEY_W:
@@ -51,11 +52,15 @@ int main()
       break;
     }
 
-    interval(game.interval) ? game.update() : void();
+    ClearBackground(constants::BACKGROUND_COLOR);
+
 
     game.draw();
 
-    DrawFPS(0, 0);
+    DrawRectangleLinesEx(Rectangle{ constants::OFFSET - 5, constants::OFFSET - 5, constants::CELL_SIZE * constants::CELL_AMOUNT + 10,  constants::CELL_SIZE * constants::CELL_AMOUNT + 10 }, 5, constants::SNAKE_COLOR);
+
+    DrawText(TextFormat("Score: %i", game.score), constants::OFFSET - 5, 20, 40, constants::SNAKE_COLOR);
+
     EndDrawing();
   }
 
