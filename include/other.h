@@ -1,0 +1,5 @@
+class Other 
+{
+  public:
+    Other();
+};
